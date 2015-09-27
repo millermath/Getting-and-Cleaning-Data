@@ -6,7 +6,7 @@ Included below are the following pieces:
 
 (1) UCI HAR Dataset Information: This is a description from the [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) of how the data was acquired
 
-(2) features_info : This is the original codebook that comes with the UCI HAR Dataset. I included here for easy reference. 
+(2) features_info : This includes some notes from the original README file as well as the original codebook that both come with the UCI HAR Dataset. I included them here for easy reference. 
 
 (3) Updates for TidyData: This updates the original codebook by specifying which variables have been included in the clean data set "TidyData.txt" produced by the run_analysis.r script included in this repository. 
 
@@ -18,6 +18,18 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 
 
 ###features_info
+
+For each record it is provided:
+
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+- Features are normalized and bounded within [-1,1].
+- Each feature vector is a row on the text file.
+
 
 Feature Selection
 
@@ -77,6 +89,9 @@ tBodyGyroMean
 tBodyGyroJerkMean
 
 The complete list of variables of each feature vector is available in 'features.txt' 
+
+
+
 
 ###Updates for TidyData
 

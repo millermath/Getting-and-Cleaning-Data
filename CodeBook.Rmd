@@ -108,10 +108,15 @@ Only a small subset of the original collection of variables are kept in the data
 The variable names were changed slightly to be more descriptive and to allow R to read these variables.
 
 (a) "t" was replaced with "time".
+
 (b) "f" was replaced with "frequency"
+
 (c) "BodyBody" was replaced with "Body"
+
 (d) "()" symbol was taken out of the variable names
+
 (e) Hyphens "-" in the variable names were replaced with underscores "_".
+
 (f) "std" was replaced with "StDev". 
 
 

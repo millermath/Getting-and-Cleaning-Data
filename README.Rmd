@@ -6,8 +6,10 @@ This repository contains the files for the course project in the John Hopkins Co
 ###Files
 This repository contains the following additional files:
 
-1) Codebook.md: The Codebook describes the variables,
+1) Codebook.md: The Codebook includes the original codebook that were provided with the original UCI HAR Dataset. It also includes an update of which variables were included in TidyData.txt and any other changes to the data that were made in the data cleaning process. 
+
 2) run_analysis.r: This is the script that produces the final clean data set TidyData.txt
+
 3) TidyData.txt: This is the actual text file produced by run_analysis.r
 
 ###Explanation of Data Cleaning Process:

@@ -1,0 +1,40 @@
+---
+title: "Getting and Cleaning Data Course Project"
+output: html_document
+---
+
+###Introduction
+This repository contains the files for the course project in the John Hopkins Coursera course "Getting and Cleaning Data". The data for the project as well as a description of the data can be found at the [UCI Machine Learning Repository.](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The goal of the project is to take the numerous files that one extracts from the original source and product a cleaned up version of the data set. 
+
+###Files
+This repository contains the following additional files:
+
+1) Codebook.md: The Codebook describes the variables,
+2) run_analysis.r: This is the script that produces the final clean data set TidyData.txt
+3) TidyData.txt: This is the actual text file produced by run_analysis.r
+
+###Explanation of Data Cleaning Process:
+run_analysis.r does the following:
+
+(1) Downloads the zipped dataset and creates a directory "Getting and Cleaning Data" if there is no such directory.It then unzips the file. 
+
+(2) Reads in all the separate files from the UCI HAR dataset into memory.
+
+(3) Adds variable names for all the columns for the datasets in (2) based on the information available in the readme and codebook that come with the original dataset.
+
+(4) Merges the various datasets together into one dataset
+
+(5) Extracts only those measurements on the mean and standard deviation for each measurement. In this case, certain variables (e.g. frequencyBodyAccJerkMag_Meanfrequency or angle(X,gravityMean) ) were questionable whether these fit the spirit of the analysis. I made the decision to include them, since present information can always removed easily but absent information is more difficult to obtain. 
+
+(6) The variable names were then cleaned up so as to be both more descriptive as well as something that R could recognize. 
+
+(7) Averages were taken of each variable for each subject and each activity. The result was now 180 rows since there were 30 subjects, each of whom performed the 6 possible activity types. 
+
+(8) Activity Types were then added to the data set by merging by activityID. Thus one can see the activity types in the data directly rather than just the code. 
+
+(9) Columns were reordered so the subjectID, activityID, and activityType were present at the beginning of the dataset followed by the various measured quantities. 
+
+(10) The rows were then ordered by subjectID and then by activityID. 
+
+(11) Finally the clean data set is produced as a txt file. 
+

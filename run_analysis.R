@@ -1,6 +1,6 @@
 library(plyr)
 
-#download and unzip the UCI Human Activity Recognition Data
+#(1) download and unzip the UCI Human Activity Recognition Data
 url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 if (!file.exists("Getting and Cleaning Data")){
         dir.create("Getting and Cleaning Data")
@@ -8,7 +8,7 @@ if (!file.exists("Getting and Cleaning Data")){
 download.file(url,destfile="./Getting and Cleaning Data/UCI Har.zip")
 unzip("./Getting and Cleaning Data/UCI Har.zip",exdir="./Getting and Cleaning Data")
 
-#read in all the relevant files
+#(2) read in all the relevant files
 Xtrain<-read.table("./Getting and Cleaning Data/UCI HAR Dataset/train/X_train.txt")
 ytrain<-read.table("./Getting and Cleaning Data/UCI HAR Dataset/train/y_train.txt")
 Xtest<-read.table("./Getting and Cleaning Data/UCI HAR Dataset/test/X_test.txt")
@@ -18,7 +18,7 @@ activity<-read.table("./Getting and Cleaning Data//UCI HAR Dataset/activity_labe
 subjecttrain<-read.table("./Getting and Cleaning Data/UCI HAR Dataset/train/subject_train.txt")
 subjecttest<-read.table("./Getting and Cleaning Data/UCI HAR Dataset/test/subject_test.txt")
 
-#rename the variables
+#(3) rename the variables
 colnames(subjecttrain)=c("subjectID")
 colnames(activity)=c("activityID","activityType")
 colnames(ytrain)=c("activityID")
@@ -27,18 +27,18 @@ colnames(Xtest)=features[,2]
 colnames(ytest)=c("activityID")
 colnames(subjecttest)=c("subjectID")
 
-#merge train and test sets together
+#(4) merge train and test sets together
 train<-cbind(subjecttrain,ytrain,Xtrain)
 test<-cbind(subjecttest,ytest,Xtest)
 Data<-rbind(train,test)
 
-#extract only those measurements on the mean and the standard deviation for each measurement
+#(5) extract only those measurements on the mean and the standard deviation for each measurement
 colnames<-colnames(Data)
 DataMStd<-Data[,grep("[Mm]ean|std",colnames(Data))]
 IDs<-Data[,c(1,2)]
 DataF<-cbind(IDs,DataMStd)
 
-#Clean up variables names and use more descriptive variable names
+#(6) Clean up variables names and use more descriptive variable names
 names(DataF)<-gsub("tGravity","timeGravity",names(DataF),fixed=TRUE)
 names(DataF)<-gsub("fBody","frequencyBody",names(DataF),fixed=TRUE)
 names(DataF)<-gsub("BodyBody","Body",names(DataF),fixed=TRUE)
@@ -51,17 +51,17 @@ names(DataF)<-gsub("-Y","_Y",names(DataF),fixed=TRUE)
 names(DataF)<-gsub("-Z","_Z",names(DataF),fixed=TRUE)
 
 
-#take average of each variable for each subject and each activity
+#(7) take average of each variable for each subject and each activity
 DataG<-aggregate(.~subjectID+activityID,DataF,mean)
 
-#include activity types matched with activityID
+#(8) include activity types matched with activityID
 DataH= merge(DataG,activity,by='activityID',all.x=TRUE)
 
-#reorder columns so subjectID, activityID,and activityType are at beginning
+#(9) reorder columns so subjectID, activityID,and activityType are at beginning
 DataI=DataH[,c(2,1,89,3:88)]
 
-#reorder by subjectID and then by activityID
+#(10) reorder by subjectID and then by activityID
 DataJ<-DataI[order(DataI$subjectID,DataI$activityID),]
 
-#produce final clean data set
+#(11) produce final clean data set
 write.table(DataJ,file="TidyData.txt",row.name=FALSE)

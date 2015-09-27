@@ -1,7 +1,4 @@
----
-title: "Getting and Cleaning Data Course Project"
-output: html_document
----
+##Getting and Cleaning Data Course Project
 
 ###Introduction
 This repository contains the files for the course project in the John Hopkins Coursera course "Getting and Cleaning Data". The data for the project as well as a description of the data can be found at the [UCI Machine Learning Repository.](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The goal of the project is to take the numerous files that one extracts from the original source and product a cleaned up version of the data set. 
